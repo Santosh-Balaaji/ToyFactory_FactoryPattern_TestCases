@@ -7,7 +7,6 @@ namespace ToyFactoryRefined
     [TestFixture]
     public class Tests
     {
-        Shape shape;
         Shape redSquare;
         Shape blueSquare;
         Shape redTriangle;
@@ -16,7 +15,6 @@ namespace ToyFactoryRefined
         [SetUp]
         public void Setup()
         {
-            shape = new Shape();
             redSquare = new Shape("Square","Red",1);
             blueSquare = new Shape("Square", "Blue", 1);
             redTriangle = new Shape("Triangle","Red", 2);
