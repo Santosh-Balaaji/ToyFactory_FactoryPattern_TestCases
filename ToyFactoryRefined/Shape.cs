@@ -20,16 +20,21 @@ namespace ToyFactoryRefined
             Color = color;
             Cost = shapeCost;
         }
-        public static decimal CalculateTotal(Shape shape) {
-            var total= (shape.Cost * shape.Cost)+ Shape.CalculateSurgePriceForRedShapes(shape);
+        public static decimal CalculateTotal(List<Shape> shapeList) {
+            decimal total = 0;
+
+            foreach (var shape in shapeList)
+            {
+                total += (shape.Cost * shape.ShapeCount) + Shape.CalculateSurgePriceForRedShapes(shape);
+            }
             return total;
         }
 
         public static decimal CalculateSurgePriceForRedShapes(Shape shape)
         {
-            decimal surgePrice = 0; 
+            decimal surgePrice = 0;
             if (shape.Color == "Red")
-                surgePrice++;
+                surgePrice = shape.ShapeCount;
 
             return surgePrice;
         }
