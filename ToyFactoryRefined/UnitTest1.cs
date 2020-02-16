@@ -12,25 +12,27 @@ namespace ToyFactoryRefined
         Shape blueSquare;
         Shape redTriangle;
         Shape redCircle;
-        //Dictionary<string, decimal> shapeCostDict; 
+        Dictionary<string, decimal> shapeCostDict; 
         List<Shape> shapeList; 
         [SetUp]
         public void Setup()
         {
-            redSquare = new Shape("Square","Red",1);
-            blueSquare = new Shape("Square", "Blue", 1);
-            redTriangle = new Shape("Triangle","Red", 2);
-            redCircle = new Shape("Circle", "Red", 3);
+            redSquare = new Shape("Square","Red");
+            blueSquare = new Shape("Square", "Blue");
+            redTriangle = new Shape("Triangle","Red");
+            redCircle = new Shape("Circle", "Red");
             shapeList = new List<Shape>();
-            //shapeCostDict = new Dictionary<string, decimal>();
-            //shapeCostDict.Add("Square", 1);
+            shapeCostDict = new Dictionary<string, decimal>();
+            shapeCostDict.Add("Square", 1);
+            shapeCostDict.Add("Triangle", 2);
+            shapeCostDict.Add("Circle", 3);
             
         }
 
         [Test]
         public void CalculateTotal_EmptyList_Return0()
         {
-            var total = Shape.CalculateTotal(shapeList);
+            var total = Shape.CalculateTotal(shapeList,shapeCostDict);
             Assert.AreEqual(total,0);
         }
         [Test]
@@ -38,7 +40,7 @@ namespace ToyFactoryRefined
         {
             shapeList.Add(redSquare);
             redSquare.ShapeCount = 1;
-            var total = Shape.CalculateTotal(shapeList);
+            var total = Shape.CalculateTotal(shapeList,shapeCostDict);
             Assert.AreEqual(total, 2);
         }
 
@@ -49,7 +51,7 @@ namespace ToyFactoryRefined
             shapeList.Add(blueSquare);
             redSquare.ShapeCount = 1;
             blueSquare.ShapeCount = 1;
-            var total = Shape.CalculateTotal(shapeList);
+            var total = Shape.CalculateTotal(shapeList,shapeCostDict);
             Assert.AreEqual(total, 3);
         }
 
@@ -62,7 +64,7 @@ namespace ToyFactoryRefined
             redTriangle.ShapeCount = 1;
             redSquare.ShapeCount = 1;
             blueSquare.ShapeCount = 1;
-            var total = Shape.CalculateTotal(shapeList);
+            var total = Shape.CalculateTotal(shapeList,shapeCostDict);
             Assert.AreEqual(total, 6);
         }
 
@@ -77,7 +79,7 @@ namespace ToyFactoryRefined
             redSquare.ShapeCount = 1;
             blueSquare.ShapeCount = 1;
             redCircle.ShapeCount = 2;
-            var total = Shape.CalculateTotal(shapeList);
+            var total = Shape.CalculateTotal(shapeList,shapeCostDict);
             Assert.AreEqual(total, 14);
         }
 
