@@ -36,6 +36,17 @@ namespace ToyFactory
 
             return surgePrice;
         }
+
+        public static decimal? CalculateSurgePriceForEachShape(List<Shape> shapeList, string shapeName)
+        { 
+            decimal? surgePrice = 0;
+            foreach (var shape in shapeList)
+            {
+                if (shape.Color == "Red" && shape.ShapeName == shapeName)
+                    surgePrice += shape.ShapeCount* SurgePrice;
+            }
+            return surgePrice;
+        }
         public static int? GetTotalNoOfItemsPerShape(List<Shape> shapeList, string shapeName)
         {
             int? count = 0;

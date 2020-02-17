@@ -14,17 +14,22 @@ namespace ToyFactory.Reports
             Console.WriteLine("Address: {0}", order.Address);
             Console.WriteLine("Due Date: {0}", order.DueDate);
             Console.WriteLine("Order #: {0}", Order.GenerateOrderID());
-            Console.WriteLine("|        | {0}  | {1} | {2} |", Enum.GetName(typeof(EnumerationValues.Shapes),0), Enum.GetName(typeof(EnumerationValues.Shapes),1), Enum.GetName(typeof(EnumerationValues.Shapes),2));
+            Console.WriteLine("|        | {0}  | {1} | {2} |", Enum.GetName(typeof(EnumerationValues.Color),0), Enum.GetName(typeof(EnumerationValues.Color),1), Enum.GetName(typeof(EnumerationValues.Color),2));
             Console.WriteLine("|--------|------|------|--------|");
             foreach (var shape in Enum.GetNames(typeof(EnumerationValues.Shapes)))
             {
-                Console.WriteLine("| {0} | {1}    | {2}    | {3}      |", shape, Shape. );
+                Console.WriteLine("| {0} | {1}    | {2}    | {3}      |", 
+                    shape, 
+                    Shape.GetTotalNoOfItemsPerShapeandColor(order.ShapeList,shape, Enum.GetName(typeof(EnumerationValues.Color), 0)), 
+                    Shape.GetTotalNoOfItemsPerShapeandColor(order.ShapeList, shape, Enum.GetName(typeof(EnumerationValues.Color), 1)),
+                    Shape.GetTotalNoOfItemsPerShapeandColor(order.ShapeList, shape, Enum.GetName(typeof(EnumerationValues.Color), 2))
+                    );
 
             }
 
-            foreach (var shape in order.ShapeList)
+            foreach (var shape in Enum.GetNames(typeof(EnumerationValues.Shapes)))
             {
-                surchargePrice += Shape.CalculateSurgePriceForRedShapes(shape);
+                surchargePrice += Shape.CalculateSurgePriceForRedShapes(order.ShapeList,shape);
                 var totalNoOfShapes = Shape.GetTotalNoOfItemsPerShape(order.ShapeList, shape.ShapeName);
                 Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape.ShapeName, totalNoOfShapes, shape.Cost,totalNoOfShapes*shape.Cost);
             }
