@@ -12,7 +12,14 @@ namespace ToyFactory
         {
             var order = GetUserDetails();
             order.ShapeList = GenerateShapeListFromFactory();
+            GetShapeDetailsFromUser(order.ShapeList);
 
+            InvoiceReport invoice = new InvoiceReport();
+            invoice.GenerateReport(order);
+            CuttingReport cuttingReport = new CuttingReport();
+            cuttingReport.GenerateReport(order);
+            PaintingReport paintingReport = new PaintingReport();
+            paintingReport.GenerateReport(order);
 
         }
 
@@ -51,6 +58,16 @@ namespace ToyFactory
 
             return factories;
 
+        }
+
+        public static void GetShapeDetailsFromUser(List<Shape> shapeList)
+        {
+            foreach (var item in shapeList)
+            {
+                Console.WriteLine("Please input the number of {0} {1}s", item.Color, item.ShapeName);
+                Int32.TryParse(Console.ReadLine(), out int count);
+                item.ShapeCount = count;
+            }
         }
     }
 }
