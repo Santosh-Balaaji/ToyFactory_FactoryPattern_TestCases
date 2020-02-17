@@ -35,5 +35,15 @@ namespace ToyFactory
 
             return surgePrice;
         }
+        public static int? GetTotalCostOfEachShape(List<Shape> shapeList, string shapeName)
+        {
+            int? count = 0;
+            foreach (var shape in shapeList)
+            {
+                if(shape.ShapeName == shapeName)
+                    count += shape.ShapeCount;
+            }
+            return count;
+        }
     }
 }
