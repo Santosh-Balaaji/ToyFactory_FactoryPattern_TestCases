@@ -9,7 +9,7 @@ namespace ToyFactory.Reports
         public string CustomerName { get; set; }
         public string Address { get; set; }
         public string DueDate { get; set; }
-        public List<List<Shape>> ShapeList { get; set; }
+        public List<Shape> ShapeList { get; set; }
         public static string OrderID { get; set; }
         public static int orderCount = 0;
 
