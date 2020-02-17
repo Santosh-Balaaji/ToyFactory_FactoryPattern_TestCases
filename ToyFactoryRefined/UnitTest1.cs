@@ -12,6 +12,7 @@ namespace ToyFactoryRefined
         List<Shape> shapeList;
         Dictionary<string, decimal> shapeCostDict;
         public Dictionary<string, ShapeFactory> factories;
+
         [SetUp]
         public void Setup()
         {
