@@ -8,7 +8,6 @@ namespace ToyFactory.Reports
     {
         public void GenerateReport(Order order)
         {
-            decimal? totalCost = 0;
             decimal? surchargePrice = 0;
             Console.WriteLine("# Invoice Report");
             Console.WriteLine("Name: {0}", order.CustomerName);
@@ -17,15 +16,20 @@ namespace ToyFactory.Reports
             Console.WriteLine("Order #: {0}", Order.GenerateOrderID());
             Console.WriteLine("|        | {0}  | {1} | {2} |", Enum.GetName(typeof(EnumerationValues.Shapes),0), Enum.GetName(typeof(EnumerationValues.Shapes),1), Enum.GetName(typeof(EnumerationValues.Shapes),2));
             Console.WriteLine("|--------|------|------|--------|");
-            Console.WriteLine("| {0} | {1}    | {2}    | {3}      |", Enum.GetName(typeof(EnumerationValues.Color),0), Enum.GetName(typeof(EnumerationValues.Color),1), Enum.GetName(typeof(EnumerationValues.Color),2));
+            foreach (var shape in Enum.GetNames(typeof(EnumerationValues.Shapes)))
+            {
+                Console.WriteLine("| {0} | {1}    | {2}    | {3}      |", shape, Shape. );
+
+            }
 
             foreach (var shape in order.ShapeList)
             {
                 surchargePrice += Shape.CalculateSurgePriceForRedShapes(shape);
-                Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape.ShapeName, shape.ShapeCount, shape.Cost,Shape.GetTotalCostOfEachShape(order.ShapeList,shape.ShapeName));
+                var totalNoOfShapes = Shape.GetTotalNoOfItemsPerShape(order.ShapeList, shape.ShapeName);
+                Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape.ShapeName, totalNoOfShapes, shape.Cost,totalNoOfShapes*shape.Cost);
             }
-            Console.WriteLine("Red color surcharge  {0} @ ${1} ppi = ${2}", Shape.GetTotalNumberOfItemsPerColor(order.ShapeList[0][0].Color, order.ShapeList), Shape.SurgePrice, Shape.GetSurchargePriceForRed(order.ShapeList));
-            Console.WriteLine("Total : {0}", (totalCost + surchargePrice));
+            Console.WriteLine("Red color surcharge  {0} @ ${1} ppi = ${2}", Shape.GetTotalNoOfItemsPerColor(order.ShapeList,"Red"), Shape.SurgePrice, surchargePrice);
+            Console.WriteLine("Total : {0}", Shape.CalculateTotal(order.ShapeList));
 
         }
     }

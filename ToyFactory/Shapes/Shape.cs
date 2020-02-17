@@ -10,9 +10,10 @@ namespace ToyFactory
         public string Color { get; set; }
         public int? ShapeCount { get; set; }
         public decimal Cost { get; set; }
+        public static decimal SurgePrice = 1;
 
-       
-       
+
+
         public static decimal? CalculateTotal(List<Shape> shapeList)
         {
             decimal? total = 0;
@@ -31,11 +32,11 @@ namespace ToyFactory
         {
             decimal? surgePrice = 0;
             if (shape.Color == "Red")
-                surgePrice = shape.ShapeCount;
+                surgePrice = shape.ShapeCount*SurgePrice ;
 
             return surgePrice;
         }
-        public static int? GetTotalCostOfEachShape(List<Shape> shapeList, string shapeName)
+        public static int? GetTotalNoOfItemsPerShape(List<Shape> shapeList, string shapeName)
         {
             int? count = 0;
             foreach (var shape in shapeList)
