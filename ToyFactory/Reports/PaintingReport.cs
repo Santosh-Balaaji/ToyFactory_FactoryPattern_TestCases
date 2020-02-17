@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ToyFactory.Reports
 {
-    class PaintingReport
+    public class PaintingReport : IGenerateReport
     {
+        public void GenerateReport(Order order)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

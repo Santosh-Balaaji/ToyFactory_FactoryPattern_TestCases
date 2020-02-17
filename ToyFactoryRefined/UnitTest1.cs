@@ -90,7 +90,7 @@ namespace ToyFactoryRefined
             var total = Shape.CalculateTotal(shapeList);
             Assert.AreEqual(total, 14);
         }
-
+        
 
 
     }
