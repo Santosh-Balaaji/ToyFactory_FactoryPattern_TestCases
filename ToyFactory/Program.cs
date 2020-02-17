@@ -7,7 +7,7 @@ namespace ToyFactory
     {
         public static void Main()
         {
-
+            new ConsoleBase();
         }
     }
 }
