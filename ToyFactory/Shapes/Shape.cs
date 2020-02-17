@@ -79,13 +79,16 @@ namespace ToyFactory
             return count;
         }
 
-        public static decimal GetTotalCostPerShape(List<Shape> shapeList, string shapeName)
+        public static decimal GetCostOfEachShape(List<Shape> shapeList, string shapeName)
         {
             decimal cost = 0;
             foreach (var shape in shapeList)
             {
                 if (shape.ShapeName == shapeName)
-                    cost += shape.Cost;
+                { 
+                    cost = shape.Cost;
+                    break;
+                }
             }
             return cost;
         }

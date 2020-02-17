@@ -31,7 +31,8 @@ namespace ToyFactory.Reports
             {
                 surchargePrice += Shape.CalculateSurgePriceForEachShape(order.ShapeList,shape);
                 var totalNoOfShapes = Shape.GetTotalNoOfItemsPerShape(order.ShapeList, shape);
-                Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape, totalNoOfShapes, shape.Cost,totalNoOfShapes*shape.Cost);
+                var costOfShape = Shape.GetCostOfEachShape(order.ShapeList, shape);
+                Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape, totalNoOfShapes,costOfShape,totalNoOfShapes*costOfShape);
             }
             Console.WriteLine("Red color surcharge  {0} @ ${1} ppi = ${2}", Shape.GetTotalNoOfItemsPerColor(order.ShapeList,"Red"), Shape.SurgePrice, surchargePrice);
             Console.WriteLine("Total : {0}", Shape.CalculateTotal(order.ShapeList));
