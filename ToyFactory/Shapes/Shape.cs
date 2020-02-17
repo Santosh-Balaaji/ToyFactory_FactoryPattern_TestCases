@@ -45,5 +45,16 @@ namespace ToyFactory
             }
             return count;
         }
+
+        public static int? GetTotalNoOfItemsPerColor(List<Shape> shapeList, string color)
+        {
+            int? count = 0;
+            foreach (var shape in shapeList)
+            {
+                if (shape.Color == color)
+                    count += shape.ShapeCount;
+            }
+            return count;
+        }
     }
 }

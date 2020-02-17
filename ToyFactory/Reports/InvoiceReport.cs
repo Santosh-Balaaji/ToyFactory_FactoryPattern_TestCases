@@ -9,6 +9,7 @@ namespace ToyFactory.Reports
         public void GenerateReport(Order order)
         {
             decimal? totalCost = 0;
+            decimal? surchargePrice = 0;
             Console.WriteLine("# Invoice Report");
             Console.WriteLine("Name: {0}", order.CustomerName);
             Console.WriteLine("Address: {0}", order.Address);
@@ -20,10 +21,9 @@ namespace ToyFactory.Reports
 
             foreach (var shape in order.ShapeList)
             {
+                surchargePrice += Shape.CalculateSurgePriceForRedShapes(shape);
                 Console.WriteLine("{0}s             {1} @ ${2} ppi = ${3}", shape.ShapeName, shape.ShapeCount, shape.Cost,Shape.GetTotalCostOfEachShape(order.ShapeList,shape.ShapeName));
             }
-
-            var surchargePrice = Shape.GetSurchargePriceForRed(order.ShapeList);
             Console.WriteLine("Red color surcharge  {0} @ ${1} ppi = ${2}", Shape.GetTotalNumberOfItemsPerColor(order.ShapeList[0][0].Color, order.ShapeList), Shape.SurgePrice, Shape.GetSurchargePriceForRed(order.ShapeList));
             Console.WriteLine("Total : {0}", (totalCost + surchargePrice));
 
