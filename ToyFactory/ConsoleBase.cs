@@ -9,7 +9,7 @@ namespace ToyFactory
     public class ConsoleBase
     {
          public  ConsoleBase()
-        {
+         {
             var order = GetUserDetails();
             order.ShapeList = GenerateShapeListFromFactory();
             GetShapeDetailsFromUser(order.ShapeList);
@@ -21,7 +21,7 @@ namespace ToyFactory
             PaintingReport paintingReport = new PaintingReport();
             paintingReport.GenerateReport(order);
 
-        }
+         }
 
         public static Order GetUserDetails()
         {
@@ -52,10 +52,6 @@ namespace ToyFactory
         public static Dictionary<string, ShapeFactory> GenerateFactoryParameters()
         {
             var factories = new Dictionary<string, ShapeFactory>();
-            /* factories.Add("Square", new SquareFactory());
-             factories.Add("Circle", new CircleFactory());
-             factories.Add("Triangle", new TriangleFactory());*/
-
             foreach (var action in Enum.GetValues(typeof(EnumerationValues.Shapes)))
             {
                 var factory = (ShapeFactory)Activator.CreateInstance(Type.GetType("ToyFactory.Factories."+Enum.GetName(typeof(EnumerationValues.Shapes),action)+"Factory"));
