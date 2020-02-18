@@ -52,9 +52,15 @@ namespace ToyFactory
         public static Dictionary<string, ShapeFactory> GenerateFactoryParameters()
         {
             var factories = new Dictionary<string, ShapeFactory>();
-            factories.Add("Square", new SquareFactory());
-            factories.Add("Circle", new CircleFactory());
-            factories.Add("Triangle", new TriangleFactory());
+            /* factories.Add("Square", new SquareFactory());
+             factories.Add("Circle", new CircleFactory());
+             factories.Add("Triangle", new TriangleFactory());*/
+
+            foreach (var action in Enum.GetValues(typeof(EnumerationValues.Shapes)))
+            {
+                var factory = (ShapeFactory)Activator.CreateInstance(Type.GetType("ToyFactory.Factories."+Enum.GetName(typeof(EnumerationValues.Shapes),action)+"Factory"));
+                factories.Add(Enum.GetName(typeof(EnumerationValues.Shapes), action), factory);
+            }
 
             return factories;
 
