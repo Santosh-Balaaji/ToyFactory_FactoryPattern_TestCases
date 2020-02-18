@@ -8,7 +8,7 @@ namespace ToyFactory
 {
     public class ConsoleBase
     {
-        public ConsoleBase()
+         public  ConsoleBase()
         {
             var order = GetUserDetails();
             order.ShapeList = GenerateShapeListFromFactory();
