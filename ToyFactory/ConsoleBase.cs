@@ -16,8 +16,8 @@ namespace ToyFactory
 
             InvoiceReport invoice = new InvoiceReport(order);
             invoice.GenerateReport();
-            CuttingReport cuttingReport = new CuttingReport();
-            cuttingReport.GenerateReport(order);
+            CuttingReport cuttingReport = new CuttingReport(order);
+            cuttingReport.GenerateReport();
             PaintingReport paintingReport = new PaintingReport();
             paintingReport.GenerateReport(order);
          }
