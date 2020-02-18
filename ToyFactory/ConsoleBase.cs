@@ -14,13 +14,12 @@ namespace ToyFactory
             order.ShapeList = GenerateShapeListFromFactory();
             GetShapeDetailsFromUser(order.ShapeList);
 
-            InvoiceReport invoice = new InvoiceReport();
-            invoice.GenerateReport(order);
+            InvoiceReport invoice = new InvoiceReport(order);
+            invoice.GenerateReport();
             CuttingReport cuttingReport = new CuttingReport();
             cuttingReport.GenerateReport(order);
             PaintingReport paintingReport = new PaintingReport();
             paintingReport.GenerateReport(order);
-
          }
 
         public static Order GetUserDetails()
@@ -59,7 +58,6 @@ namespace ToyFactory
             }
 
             return factories;
-
         }
 
         public static void GetShapeDetailsFromUser(List<Shape> shapeList)

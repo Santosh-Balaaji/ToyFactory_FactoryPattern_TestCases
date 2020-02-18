@@ -6,6 +6,6 @@ namespace ToyFactory.Reports
 {
     interface IGenerateReport
     {
-        public void GenerateReport(Order order);
+        public void GenerateReport();
     }
 }
